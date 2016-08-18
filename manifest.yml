@@ -1,0 +1,14 @@
+declared-services:
+  text-to-speech-service:
+    label: text_to_speech
+    plan: standard
+  speech-to-text-service:
+    label: speech_to_text
+    plan: standard
+applications:
+- services:
+  - text-to-speech-service
+  - speech-to-text-service
+  name: soramimi-english
+  command: node ./bin/www
+  path: .

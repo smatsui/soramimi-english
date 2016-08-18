@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p 日本語を入力してください
+  input(type="text" id="jptext" checked)
+  button(type="button" id="convbtn")|英語に変換
+  p 
+    div(class="result") 変換結果: &nbsp
+    div(class="result" id="result")

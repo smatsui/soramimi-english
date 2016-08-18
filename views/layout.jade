@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js')
+    block scripts
+      script(type="text/javascript").
+        $(function(){
+          $('#convbtn').click(function(){
+            $.ajax({
+              type: 'GET',
+              url: '/api/entext',
+              data: {
+                jptext: $('#jptext').val()
+              },
+              dataType: 'json',
+              beforeSend: function(){
+                $('#result').text("変換中...");
+              }
+            }).done(function(json){
+              var entext = json.results[0].alternatives[0].transcript;
+              console.log("entext: ", entext);
+              $('#result').text(entext);
+            }).fail(function(){
+              console.log("fail");
+            });
+          });
+        });
+
+  body
+    block content
